@@ -45,10 +45,12 @@ jar {
 
 run {
     mainClass = "ParseTempsDriver"
+    args = ["sample_input.txt"]
 }
 
 application {
     mainClass = "ParseTempsDriver"
+    applicationDefaultJvmArgs = [] 
 }
 // Apply common settings for both test (unit test) and integration test tasks
 tasks.withType(Test) {

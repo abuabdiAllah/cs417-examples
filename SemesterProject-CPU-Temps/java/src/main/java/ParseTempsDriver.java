@@ -21,15 +21,24 @@ public class ParseTempsDriver {
     {
         BufferedReader tFileStream = null;
 
+        //confirm CL (command-line) argument was given
+        if (args.length != 1) {
+        System.err.println("Error: No input filename provided as Command Line argument.");
+        System.exit(1); // Exit with error code
+        }
+
         // Parse command line argument 1
         try {
             tFileStream = new BufferedReader(new FileReader(new File(args[0])));
         }
-        catch (ArrayIndexOutOfBoundsException e) {
+        //this catch is not needed bc of the if added above, since ArrayIndex... only checks a CL input error after it 
+        //already occured whereas my if statement prevents the error by confirming there is exactly one argument before moving on
+        /* catch (ArrayIndexOutOfBoundsException e) {
             // TBW
-        }
+        } */ 
         catch (FileNotFoundException e) {
-            // TBW
+            System.err.println("Error! The following file was not found: " + args[0]);
+            System.exit(1);
         }
 
         List<CoreTempReading> allTheTemps = parseRawTemps(tFileStream);
